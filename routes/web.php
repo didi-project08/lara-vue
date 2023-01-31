@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,11 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('single');
+    return view('main');
 });
 
 Route::any('/{slug}', function () {
-    return view('single');
+    return view('main');
 });
 
-Route::get('api/payments', [PaymentController::class, 'data_payment']);
+//ROUTE API
+Route::get('api/users/{param}', [UserController::class, 'data_user']);

@@ -10,12 +10,10 @@ class Payment extends Model
 
     public static function get_data_payment($vars = [], $mode)
     {
-        // WHERE FC_BRANCH = 'COGRJG'
         $connection = DB::connection('sqlsrv');
         
-        $offset = ($vars['rows'] - 1) * $vars['page'];
-        $rows = $vars['rows'];
-        $db = $connection->select("SELECT TOP (10) * FROM [d_master].[dbo].[t_dc]");
+        $q1 = 'SELECT a.*, ROW_NUMBER() OVER (ORDER BY a.f_id) AS num_rows FROM d_temporary.dbo.t_users_log AS a';
+        $db = $connection->select("SELECT b.* FROM (".$q1.") AS b WHERE b.num_rows BETWEEN ".$vars['page']." AND ".$vars['rows']." ");
 
         if ($mode == 'total') {
             $result = count($db);
@@ -30,4 +28,5 @@ class Payment extends Model
             return $result;
         }
     }
+
 }

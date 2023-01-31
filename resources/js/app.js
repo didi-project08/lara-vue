@@ -7,9 +7,11 @@
 require('./bootstrap');
 
 window.Vue = require('vue').default
-import 'vx-easyui/dist/themes/default/easyui.css'
+import 'vx-easyui/dist/themes/metro/easyui.css'
 import 'vx-easyui/dist/themes/icon.css'
 import 'vx-easyui/dist/themes/vue.css'
+import '../css/app.css'
+import '../js/main.js'
 import VueRouter from 'vue-router'
 import EasyUI from 'vx-easyui'
 Vue.use(VueRouter).use(EasyUI)
@@ -24,19 +26,28 @@ Vue.use(VueRouter).use(EasyUI)
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('header-component', require('./components/HeaderComponent.vue').default);
-Vue.component('footer-component', require('./components/FooterComponent.vue').default);
-Vue.component('payment-datagrid-component', require('./components/PaymentDatagrid.vue').default);
+// ============= START COMPONENTS APP =====================
+Vue.component('dark-mode-switcher-component', require('./components/app/DarkModeSwitcher.vue').default);
+Vue.component('main-color-switcher-component', require('./components/app/MainColorSwitcher.vue').default);
+Vue.component('mobile-menu-component', require('./components/app/MobileMenu.vue').default);
+Vue.component('top-bar-component', require('./components/app/TopBar.vue').default);
+// ============= END COMPONENTS APP =======================
 
-const Payment = require('./pages/Payment.vue').default
+// ============= START COMPONENTS USER ====================
+Vue.component('user-datagrid-component', require('./components/user/UserDatagrid.vue').default);
+Vue.component('addview-user-component', require('./components/user/AddView.vue').default);
+Vue.component('editview-user-component', require('./components/user/EditView.vue').default);
+// ============= END COMPONENTS USER ======================
+
+const Users = require('./pages/User.vue').default
 const About = require('./pages/About.vue').default
 
 const routes = [
     {
-        path: '/payment',
-        component: Payment
+        path: '/user',
+        component: Users
     },
     {
         path: '/about',

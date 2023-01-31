@@ -1,4 +1,14 @@
+// Load plugins
+import helper from "./helper";
+import axios from "axios";
+import * as Popper from "@popperjs/core";
+import dom from "@left4code/tw-starter/dist/js/dom";
+
 window._ = require('lodash');
+window.helper = helper;
+window.axios = axios;
+window.Popper = Popper;
+window.$ = dom;
 
 // try {
 //     require('bootstrap');
